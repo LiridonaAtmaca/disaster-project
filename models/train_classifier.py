@@ -16,7 +16,6 @@ nltk.download(['punkt', 'wordnet'])
 
 
 def load_data(database_filepath):
-<<<<<<< HEAD
     """
     Loads data from a certain database filepath into a pandas dataframe,
     splits it into features (X) and values that need to be predicted (Y) and the
@@ -28,8 +27,6 @@ def load_data(database_filepath):
     Returns: 
     X, Y, category_names
     """
-=======
->>>>>>> 48afdf40523d6ec01abd26d397de39c8342f06b4
     engine = create_engine(f'sqlite:///{database_filepath}')
     sql = 'SELECT * FROM mytable;'
     df = pd.read_sql_table('mytable', engine)
@@ -41,7 +38,6 @@ def load_data(database_filepath):
 
 
 def tokenize(text):
-<<<<<<< HEAD
     """
     Performs a word tokenize and a lemmatization on the text
   
@@ -51,8 +47,6 @@ def tokenize(text):
     Returns: 
     clean_tokens (list): cleaned tokenized words
     """
-=======
->>>>>>> 48afdf40523d6ec01abd26d397de39c8342f06b4
     tokens = word_tokenize(text)
     lemmatizer = WordNetLemmatizer()
 
@@ -65,14 +59,11 @@ def tokenize(text):
 
 
 def build_model():
-<<<<<<< HEAD
     """
     Builds a ML pipeline using GridSearch
     
     Returns: cv (object: GridSearchCV): the model
     """
-=======
->>>>>>> 48afdf40523d6ec01abd26d397de39c8342f06b4
     pipeline = Pipeline([
         ('text_pipeline', Pipeline([
             ('vect', CountVectorizer(tokenizer=tokenize)),
@@ -91,7 +82,6 @@ def build_model():
     return cv
 
 def evaluate_model(model, X_test, Y_test, category_names):
-<<<<<<< HEAD
     """
     Predicts on the test set and prints out a classification report
     
@@ -101,8 +91,6 @@ def evaluate_model(model, X_test, Y_test, category_names):
     Y_test (): actual true values
     category_names (list): category names
     """
-=======
->>>>>>> 48afdf40523d6ec01abd26d397de39c8342f06b4
     y_pred = model.predict(X_test)
     predicted = pd.DataFrame(y_pred, columns = category_names)
     actual = pd.DataFrame(Y_test, columns = category_names)
@@ -112,7 +100,6 @@ def evaluate_model(model, X_test, Y_test, category_names):
 
 
 def save_model(model, model_filepath):
-<<<<<<< HEAD
     """
     Saves the model as a pickle file
     
@@ -120,8 +107,6 @@ def save_model(model, model_filepath):
     model (object): ML model
     model_filepath (string): model filepath
     """
-=======
->>>>>>> 48afdf40523d6ec01abd26d397de39c8342f06b4
     with open(model_filepath, 'wb') as file:
         pickle.dump(model, file)
 
